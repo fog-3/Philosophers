@@ -6,7 +6,7 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:36:15 by fernando          #+#    #+#             */
-/*   Updated: 2024/12/25 19:58:41 by fernando         ###   ########.fr       */
+/*   Updated: 2025/02/07 13:16:06 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,27 @@ void err_msg_args()
 	write(2, "\t  simulation. If is not specified, the simulation\n", 51);
 	write(2, "\t  will stop with the death of a philosopher.\n", 46);
 	write(2, "\n Example of use:\n", 18);
-	write(2, "\t\e[36m./philo 5 800 200 200 [5]\e[0m\n\n", 37);
+	write(2, "\t\e[36m./philo 5 800 200 200 5\e[0m\n\n", 35);
+}
+
+void	ft_free(t_data *data, t_philosopher **phil, char *msg)
+{
+	int i;
+
+	i = 0;
+	if (msg != NULL)
+		printf("\e[1;31mError\e[0m: %s", msg);
+	if (phil != NULL)
+	{
+		while (phil[i])
+			free(phil[i++]);
+		i = 0;
+	}
+	if (data != NULL)
+	{
+		while (i < data->num_philosophers)
+			pthread_mutex_destroy(&data->forks[i++]);
+		pthread_mutex_destroy(&data->print);
+		free(data);	
+	}		
 }
