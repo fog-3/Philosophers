@@ -6,11 +6,11 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 21:47:53 by fernando          #+#    #+#             */
-/*   Updated: 2025/01/27 20:55:09 by fernando         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:39:58 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 // struct timeval {
 //   time_t        tv_sec;   // Seconds

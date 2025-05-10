@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:52:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/23 17:18:39 by fernando         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:50:00 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdint.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
@@ -43,9 +44,10 @@ typedef struct s_philosopher {
 } t_philosopher;
 
 /** Time functions **/
+long int	get_time(void);
 void		wait(long time_to_sleep);
 long int	get_diff_time(long int init_time);
-long intget_time(void);
+long 		intget_time(void);
 
 /** Utils **/
 int		ft_atoi(const char *str);
@@ -57,6 +59,6 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg);
 
 /*** Philosophers functions ***/
 void	*philosopher_routine(void *arg);
-void	start_philos(t_philosopher *philos, int n);
+int		start_philos(t_philosopher *philos, int n);
 
 #endif

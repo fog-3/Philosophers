@@ -6,11 +6,11 @@
 /*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:04:00 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/23 17:12:11 by fernando         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:40:03 by fernando         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 // Function used to print the status of every philosopher
 void	print_status(t_philosopher *philo, const char *status)

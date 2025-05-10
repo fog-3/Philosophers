@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:36:15 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/07 13:16:06 by fernando         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:51:48 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 /* Function that print some error mensages when the arguments are wrong */
 void err_msg_args()
@@ -23,10 +23,12 @@ void err_msg_args()
 	write(2, "pher\n\t  does not start eating in this time he will die.\n", 56);
 	write(2, "\t\e[36m- Time to eat (in miliseconds)\e[0m: the ", 46);
 	write(2, "time that has a\n\t  philosopher to eat. \n", 40);
-	write(2, "\t\e[36m- Time to sleep (in miliseconds)\e[0m: the time of a\n", 58);
+	write(2, "\t\e[36m- Time to sleep (in miliseconds)\e[0m:", 43);
+	write(2, " the time of a\n", 15);
 	write(2, "\t  philosopher to sleep.\n", 25);
 	write(2, " Optionally you can pass to the program:\n", 41);
-	write(2, "\t\e[36m- Number of times each philosopher must eat\e[0m: if all\n", 62);
+	write(2, "\t\e[36m- Number of times each philosopher must eat\e[0m:", 54);
+	write(1, " if all\n", 8);
 	write(2, "\t  eat at least this number of times to stop the\n", 49);
 	write(2, "\t  simulation. If is not specified, the simulation\n", 51);
 	write(2, "\t  will stop with the death of a philosopher.\n", 46);

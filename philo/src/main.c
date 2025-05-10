@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:29:33 by fernando          #+#    #+#             */
-/*   Updated: 2025/02/23 17:44:03 by fernando         ###   ########.fr       */
+/*   Updated: 2025/05/10 11:50:43 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 int	init_struct(char **argv, t_data *data)
 {
@@ -59,7 +59,8 @@ void	init_philos(t_data *global_data)
 		philos[i].data = global_data;
 		i++;
 	}
-	start_threads(philos, n);
+	if (start_philos(philos, n))
+		return ;
 	free(philos);
 }
 
