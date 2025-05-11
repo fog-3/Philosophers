@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 21:47:53 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/10 11:39:58 by fernando         ###   ########.fr       */
+/*   Updated: 2025/05/11 09:33:01 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //   suseconds_t   tv_usec;  // microseconds
 // };
 
-/* It's a sleep function with a better control of the millisecond that pass */
+/* It's a sleep function with a better control of the milliseconds */
 void	wait(long time_to_sleep)
 {
 	long	wake_up_time;

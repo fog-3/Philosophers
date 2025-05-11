@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:36:15 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/10 11:51:48 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/05/11 12:45:00 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void err_msg_args()
 {
 	write(2, "\n*================ \e[1;31mERROR\e[0m: Incorrect Arguments", 56);
-	write(2, " ================*\n\n You must to pass to the program:\n", 54);
+	write(2, " =================*\n\n You must to pass to the program:\n", 55);
 	write(2, "\t\e[36m- Number of philosophers\e[0m: is the number of\n", 53);
 	write(2, "\t  philosophers and the number of forks.\n", 41);
 	write(2, "\t\e[36m- Time to die (in miliseconds)\e[0m: if a philoso", 54);
@@ -28,7 +28,7 @@ void err_msg_args()
 	write(2, "\t  philosopher to sleep.\n", 25);
 	write(2, " Optionally you can pass to the program:\n", 41);
 	write(2, "\t\e[36m- Number of times each philosopher must eat\e[0m:", 54);
-	write(1, " if all\n", 8);
+	write(2, " if all\n", 8);
 	write(2, "\t  eat at least this number of times to stop the\n", 49);
 	write(2, "\t  simulation. If is not specified, the simulation\n", 51);
 	write(2, "\t  will stop with the death of a philosopher.\n", 46);
@@ -54,6 +54,6 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg)
 		while (i < data->num_philosophers)
 			pthread_mutex_destroy(&data->forks[i++]);
 		pthread_mutex_destroy(&data->print);
-		free(data);	
+		free(data);
 	}		
 }

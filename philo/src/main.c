@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:29:33 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/10 11:50:43 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/05/11 12:44:37 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,8 @@ void	init_philos(t_data *global_data)
 		philos[i].data = global_data;
 		i++;
 	}
-	if (start_philos(philos, n))
-		return ;
-	free(philos);
+	start_philos(philos, n);
+	ft_free(global_data, philos, NULL);
 }
 
 int main(int argc, char *argv[])
@@ -79,7 +78,6 @@ int main(int argc, char *argv[])
 		if (argc == 6)
 			global_data.max_meals = ft_atoi(argv[5]);
 		init_philos(&global_data);
-		ft_free(&global_data, NULL, NULL);
 	}
 	else
 		err_msg_args();

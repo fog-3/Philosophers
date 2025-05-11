@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:33:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/10 11:51:19 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/05/11 12:55:10 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,35 @@
 
 void    think(t_philosopher *philo)
 {
-	(void)philo;
-	//Comprobamos toda la vaina: stop_simulation, max_meals, last_meal_time, meal_count;
+	if (eval_status(philo))
+		return ;
+	print_status(philo, "is thinking");
 }
 
 void    eat(t_philosopher *philo)
 {
 	pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
+	if (eval_status(philo))
+		return ;
 	print_status(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
+	if (eval_status(philo))
+		return ;
 	print_status(philo, "has taken a fork");
 	print_status(philo, "is eating");
 	wait(philo->data->time_to_eat);
+	philo->last_meal_time = get_time();
+	philo->meal_count += 1;
 	pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
 	pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
 }
 
 void    sleep_philo(t_philosopher *philo)
 {
+	if (eval_status(philo))
+		return ;
 	print_status(philo, "is sleeping");
 	wait(philo->data->time_to_sleep);
-}
-
-void	take_forks(t_philosopher *philo)
-{
-	(void)philo;
-}
-
-void	drop_forks(t_philosopher *philo)
-{
-	(void)philo;
 }
 
 void	*philosopher_routine(void *arg)
@@ -51,11 +50,9 @@ void	*philosopher_routine(void *arg)
 	t_philosopher   *philo;
 	
 	philo = (t_philosopher  *) arg;
-	while (!philo->data->stop_simulation)
+	while (!eval_status(philo))
 	{
-		take_forks(philo);
 		eat(philo);
-		drop_forks(philo);
 		sleep_philo(philo);
 		think(philo);
 	}

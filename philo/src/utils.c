@@ -3,22 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fernando <fernando@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:04:00 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/10 11:40:03 by fernando         ###   ########.fr       */
+/*   Updated: 2025/05/11 09:45:44 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-// Function used to print the status of every philosopher
-void	print_status(t_philosopher *philo, const char *status)
-{
-	pthread_mutex_lock(&philo->data->print);
-	printf("%ld %i %s\n", get_diff_time(philo->data->start_time), philo->id, status);
-	pthread_mutex_unlock(&philo->data->print);
-}
 
 int	ft_atoi(const char *str)
 {

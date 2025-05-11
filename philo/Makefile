@@ -24,7 +24,7 @@ $(NAME): $(OBJS_PATH)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
-	@$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(GREEN)🔧 Compiling: $<$(RESET)"
 
 clean:
