@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:52:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/11 12:42:22 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/05/11 13:02:51 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg);
 
 /*** Philosophers functions ***/
 void	*philosopher_routine(void *arg);
-int		start_philos(t_philosopher *philos, int n);
-void	take_forks(t_philosopher *philo);
-void	drop_forks(t_philosopher *philo);
+int		start_philos(t_philosopher **philos, int n);
 void    think_aux(t_philosopher *philo);
 int		eval_status(t_philosopher *philo);
 

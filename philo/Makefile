@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -pthread
 
 SRCS_DIR = src/
-SRCS = main.c utils.c time.c filosofo.c error.c
+SRCS = main.c utils.c time.c filosofo.c error.c ft_mutex.c
 SRCS_PATH = $(addprefix $(SRCS_DIR), $(SRCS))
 
 OBJS_DIR = obj/

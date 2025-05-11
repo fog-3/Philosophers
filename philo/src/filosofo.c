@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:33:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/11 12:55:10 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/05/11 13:01:42 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	*philosopher_routine(void *arg)
 	return NULL;
 }
 
-int    start_philos(t_philosopher *philos, int n)
+int    start_philos(t_philosopher **philos, int n)
 {
 	int i;
 	pthread_t th_philo;
@@ -67,8 +67,8 @@ int    start_philos(t_philosopher *philos, int n)
 	i = 0;
 	while(i < n)
 	{
-		th_philo = philos[i].thread;
-		if (pthread_create(&th_philo, NULL, philosopher_routine, &philos[i]) != 0)
+		th_philo = philos[i]->thread;
+		if (pthread_create(&th_philo, NULL, philosopher_routine, philos[i]) != 0)
 		{
 			write(2, "Error creando el hilo", 21);
 			return (0);
@@ -78,7 +78,7 @@ int    start_philos(t_philosopher *philos, int n)
 	i = 0;
 	while (i < n)
 	{
-		th_philo = philos[i].thread;
+		th_philo = philos[i]->thread;
 		pthread_join(th_philo, NULL);
 	}
 	return (1);

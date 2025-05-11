@@ -28,19 +28,3 @@ int	eval_status(t_philosopher *philo)
 	}
 	return (res);
 }
-
-void    think_aux(t_philosopher *philo)
-{
-	(void)philo;
-	//Comprobamos toda la vaina: stop_simulation, max_meals, last_meal_time, meal_count;
-}
-
-void	take_forks(t_philosopher *philo)
-{
-	(void)philo;
-}
-
-void	drop_forks(t_philosopher *philo)
-{
-	(void)philo;
-}
