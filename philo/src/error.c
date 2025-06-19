@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:36:15 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/11 12:59:30 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:43:00 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg)
 		while (i < data->num_philosophers)
 			pthread_mutex_destroy(&data->forks[i++]);
 		pthread_mutex_destroy(&data->print);
+		pthread_mutex_destroy(&data->stop_mutex);
 		free(data);
 	}		
 }

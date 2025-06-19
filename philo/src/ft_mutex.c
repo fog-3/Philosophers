@@ -15,9 +15,10 @@ int	eval_status(t_philosopher *philo)
 	int res;
 
 	res = 0;
+	pthread_mutex_lock(&philo->data->stop_mutex);
 	if (get_diff_time(philo->last_meal_time) > philo->data->time_to_die ||
-		philo->data->stop_simulation ||
-		philo->meal_count >= philo->data->max_meals)
+		philo->data->stop_simulation || (philo->data->max_meals > 0 &&
+		philo->meal_count >= philo->data->max_meals))
 	{
 		if (get_diff_time(philo->last_meal_time) > philo->data->time_to_die)
 		{
@@ -26,5 +27,6 @@ int	eval_status(t_philosopher *philo)
 		}
 		res = 1;
 	}
+	pthread_mutex_unlock(&philo->data->stop_mutex);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:33:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/11 13:01:42 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:43:48 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,25 @@ void    eat(t_philosopher *philo)
 {
 	pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
 	if (eval_status(philo))
+	{
+		pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);	
 		return ;
+	}
 	print_status(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
 	if (eval_status(philo))
+	{
+		pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
+        pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);	
 		return ;
+	}
 	print_status(philo, "has taken a fork");
 	print_status(philo, "is eating");
 	wait(philo->data->time_to_eat);
+	pthread_mutex_lock(&philo->data->stop_mutex);
 	philo->last_meal_time = get_time();
 	philo->meal_count += 1;
+	pthread_mutex_unlock(&philo->data->stop_mutex);
 	pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
 	pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
 }
@@ -59,16 +68,14 @@ void	*philosopher_routine(void *arg)
 	return NULL;
 }
 
-int    start_philos(t_philosopher **philos, int n)
+int    start_philos(t_philosopher *philos, int n)
 {
 	int i;
-	pthread_t th_philo;
 	
 	i = 0;
 	while(i < n)
 	{
-		th_philo = philos[i]->thread;
-		if (pthread_create(&th_philo, NULL, philosopher_routine, philos[i]) != 0)
+		if (pthread_create(&philos[i].thread, NULL, philosopher_routine, &philos[i]) != 0)
 		{
 			write(2, "Error creando el hilo", 21);
 			return (0);
@@ -78,8 +85,8 @@ int    start_philos(t_philosopher **philos, int n)
 	i = 0;
 	while (i < n)
 	{
-		th_philo = philos[i]->thread;
-		pthread_join(th_philo, NULL);
+		pthread_join(philos[i].thread, NULL);
+		i++;
 	}
 	return (1);
 }

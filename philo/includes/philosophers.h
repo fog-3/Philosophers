@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:52:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/11 13:02:51 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/05/21 11:42:04 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data {
 	long start_time;        // Tiempo de inicio del programa
 	pthread_mutex_t *forks; // Array de mutexes para los tenedores
 	pthread_mutex_t print;  // Mutex para imprimir en la salida estándar
+	pthread_mutex_t stop_mutex;	// Mutex para acceder y modificar los datos globales
 	int stop_simulation;    // Bandera para detener la simulación
 } t_data;
 
@@ -52,6 +53,7 @@ long 		intget_time(void);
 /** Utils **/
 int		ft_atoi(const char *str);
 void	print_status(t_philosopher *philo, const char *status);
+int		ft_strlen(const char *str);
 
 /** Error functions **/
 void	err_msg_args();
@@ -59,7 +61,7 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg);
 
 /*** Philosophers functions ***/
 void	*philosopher_routine(void *arg);
-int		start_philos(t_philosopher **philos, int n);
+int		start_philos(t_philosopher *philos, int n);
 void    think_aux(t_philosopher *philo);
 int		eval_status(t_philosopher *philo);
 
