@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:33:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/21 11:43:48 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/23 15:03:49 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,14 @@ void    think(t_philosopher *philo)
 void    eat(t_philosopher *philo)
 {
 	pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
-	if (eval_status(philo))
-	{
-		pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);	
-		return ;
-	}
-	print_status(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
 	if (eval_status(philo))
 	{
 		pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
-        pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);	
+        pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
 		return ;
 	}
+	print_status(philo, "has taken a fork");
 	print_status(philo, "has taken a fork");
 	print_status(philo, "is eating");
 	wait(philo->data->time_to_eat);
