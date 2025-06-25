@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:52:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/21 11:42:04 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/24 14:35:15 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 /* Structuts */
 typedef struct s_data {
 	int num_philosophers;   // Número de filósofos
+	int num_philo_eaten;	// Filosofos que han terminado de comer
 	int time_to_die;        // Tiempo máximo sin comer
 	int time_to_eat;        // Tiempo que tarda en comer
 	int time_to_sleep;      // Tiempo que tarda en dormir
@@ -41,6 +42,7 @@ typedef struct s_philosopher {
 	int right_fork;       // Índice del tenedor derecho
 	long last_meal_time;  // Tiempo de la última comida
 	int meal_count;       // Número de comidas realizadas
+	int have_eaten;		  // 0 si no ha terminado todas las comidas
 	struct s_data *data;  // Puntero a los datos compartidos
 } t_philosopher;
 

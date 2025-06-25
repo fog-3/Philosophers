@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:29:33 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/21 11:42:27 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/25 07:10:17 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	init_struct(char **argv, t_data *data)
 	i = 0;
 	n = ft_atoi(argv[1]);
 	data->num_philosophers = n;
-	data->start_time = get_time();
+	data->num_philo_eaten = 0;
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
@@ -47,6 +47,7 @@ void	init_philos(t_data *global_data)
 
 	n = global_data->num_philosophers;
 	philos = (t_philosopher *)malloc(n * sizeof(t_philosopher));
+	global_data->start_time = get_time();
 	i = 0;
 	while (i < n)
 	{
@@ -55,11 +56,11 @@ void	init_philos(t_data *global_data)
 		philos[i].right_fork = (i + 1) % n;
 		philos[i].last_meal_time = global_data->start_time;
 		philos[i].meal_count = 0;
+		philos[i].have_eaten = 0;
 		philos[i].data = global_data;
 		i++;
 	}
 	start_philos(philos, n);
-	ft_free(global_data, &philos, NULL);
 }
 
 int main(int argc, char *argv[])

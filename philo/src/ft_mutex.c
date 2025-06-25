@@ -12,21 +12,27 @@ void	print_status(t_philosopher *philo, const char *status)
 
 int	eval_status(t_philosopher *philo)
 {
-	int res;
+	int i;
 
-	res = 0;
+	i = 0;
 	pthread_mutex_lock(&philo->data->stop_mutex);
-	if (get_diff_time(philo->last_meal_time) > philo->data->time_to_die ||
-		philo->data->stop_simulation || (philo->data->max_meals > 0 &&
-		philo->meal_count >= philo->data->max_meals))
+	if (philo->data->max_meals > 0 && philo->meal_count >= philo->data->max_meals)
 	{
-		if (get_diff_time(philo->last_meal_time) > philo->data->time_to_die)
+		if (!philo->have_eaten)
 		{
-			print_status(philo, "died");
-			philo->data->stop_simulation = 1;
+			philo->have_eaten = 1;
+			philo->data->num_philo_eaten++;
 		}
-		res = 1;
+		if (philo->data->num_philo_eaten == philo->data->num_philosophers)
+			philo->data->stop_simulation = 1;
 	}
+	if (get_diff_time(philo->last_meal_time) >= philo->data->time_to_die)
+	{
+		if (!philo->data->stop_simulation)
+			print_status(philo, "died");
+		philo->data->stop_simulation = 1;
+	}
+	i = philo->data->stop_simulation;
 	pthread_mutex_unlock(&philo->data->stop_mutex);
-	return (res);
+	return (i);
 }

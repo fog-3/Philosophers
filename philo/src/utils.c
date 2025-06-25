@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:04:00 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/21 09:05:00 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/23 21:48:36 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_atoi(const char *str)
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
-		res += (res * 10) + (str[i] - '0');
+		res = (res * 10) + (str[i] - '0');
 		i++;
 	}
 	res *= neg;

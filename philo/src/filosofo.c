@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:33:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/23 15:03:49 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:53:32 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ void    think(t_philosopher *philo)
 void    eat(t_philosopher *philo)
 {
 	pthread_mutex_lock(&philo->data->forks[philo->left_fork]);
+	if (eval_status(philo))
+	{
+		pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
+		return ;
+	}
 	pthread_mutex_lock(&philo->data->forks[philo->right_fork]);
 	if (eval_status(philo))
 	{
@@ -35,7 +40,7 @@ void    eat(t_philosopher *philo)
 	wait(philo->data->time_to_eat);
 	pthread_mutex_lock(&philo->data->stop_mutex);
 	philo->last_meal_time = get_time();
-	philo->meal_count += 1;
+	philo->meal_count++;
 	pthread_mutex_unlock(&philo->data->stop_mutex);
 	pthread_mutex_unlock(&philo->data->forks[philo->left_fork]);
 	pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
@@ -83,5 +88,6 @@ int    start_philos(t_philosopher *philos, int n)
 		pthread_join(philos[i].thread, NULL);
 		i++;
 	}
+	ft_free(philos->data, &philos, NULL);
 	return (1);
 }

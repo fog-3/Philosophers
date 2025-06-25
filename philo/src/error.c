@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:36:15 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/21 11:43:00 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:48:56 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,21 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg)
 	i = 0;
 	if (msg != NULL)
 		printf("\e[1;31mError\e[0m: %s", msg);
-	if (phil != NULL)
+	if (phil != NULL && *phil != NULL)
 	{
-		while (phil[i])
-			free(phil[i++]);
-		i = 0;
+		free(*phil);
+        *phil = NULL;
 	}
 	if (data != NULL)
 	{
-		while (i < data->num_philosophers)
-			pthread_mutex_destroy(&data->forks[i++]);
+		if (data->forks != NULL)
+		{
+			while (i < data->num_philosophers)
+				pthread_mutex_destroy(&data->forks[i++]);
+			free(data->forks);
+			data->forks = NULL;
+		}
 		pthread_mutex_destroy(&data->print);
 		pthread_mutex_destroy(&data->stop_mutex);
-		free(data);
 	}		
 }
