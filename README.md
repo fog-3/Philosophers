@@ -34,7 +34,6 @@ This project solves the classic **Dining Philosophers Problem** using threads an
 ### Compilation
 ```bash
 make        # Compile mandatory part
-make bonus  # Compile bonus part (if implemented)
 ```
 
 ### Execution
@@ -52,18 +51,18 @@ make bonus  # Compile bonus part (if implemented)
 
 ## 📜 Example Output
 ```bash
-0ms 1 has taken a fork
-0ms 2 has taken a fork
-0ms 1 is eating
-200ms 1 is sleeping
-200ms 2 is eating
-400ms 1 is thinking
+0 1 has taken a fork
+0 2 has taken a fork
+0 1 is eating
+200 1 is sleeping
+200 2 is eating
+400 1 is thinking
 ...
 ```
 
 In a table it would look like that:
 
-![table](imgof_table.jpg)
+![table](Tabla_philo.png)
 
 *You can see this tipes of tables giving the result of the ejecutation on this [web](https://nafuka11.github.io/philosophers-visualizer/).*
 
@@ -101,6 +100,7 @@ make re SANITIZE=1
 ---
 
 ## 📝 Credits
+
 - **Completed at:** 42 Malaga  
 - **Author:** Fernando (@fosuna-g)  
 - **Date:** [to complete]  
