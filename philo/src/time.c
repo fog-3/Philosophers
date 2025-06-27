@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 21:47:53 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/27 10:15:54 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/27 12:08:38 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 //   time_t        tv_sec;   // Seconds
 //   suseconds_t   tv_usec;  // microseconds
 // };
+
+/* It's a sleep function with a better control of the milliseconds */
+void	wait2(long time_to_sleep)
+{
+	long	wake_up_time;
+
+	wake_up_time = get_time() + time_to_sleep;
+	while (get_time() < wake_up_time)
+		usleep(100);
+}
 
 /* It's a sleep function with a better control of the milliseconds */
 void	wait(long time_to_sleep, t_philosopher *philo)
