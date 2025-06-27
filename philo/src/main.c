@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:29:33 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/25 07:10:17 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:27:47 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	init_struct(char **argv, t_data *data)
 	int	i;
 	
 	i = 0;
-	n = ft_atoi(argv[1]);
+	n = cmp_atoi(argv[1]);
 	data->num_philosophers = n;
 	data->num_philo_eaten = 0;
-	data->time_to_die = ft_atoi(argv[2]);
-	data->time_to_eat = ft_atoi(argv[3]);
-	data->time_to_sleep = ft_atoi(argv[4]);
+	data->time_to_die = cmp_atoi(argv[2]);
+	data->time_to_eat = cmp_atoi(argv[3]);
+	data->time_to_sleep = cmp_atoi(argv[4]);
 	data->forks = (pthread_mutex_t *)malloc(n * sizeof(pthread_mutex_t));
 	while (i < n)
 	{
@@ -36,7 +36,8 @@ int	init_struct(char **argv, t_data *data)
 	if (pthread_mutex_init(&data->stop_mutex, NULL) != 0)
 		return (-1);
 	data->stop_simulation = 0;
-	return (0);
+	n = eval_params(data);
+	return (n);
 }
 
 void	init_philos(t_data *global_data)
@@ -71,7 +72,7 @@ int main(int argc, char *argv[])
 	{
 		if (init_struct(argv, &global_data) < 0)
 		{
-			ft_free(&global_data, NULL, "inicializar struct");
+			ft_free(&global_data, NULL, "bad initialization");
 			return (-1);
 		}
 		global_data.max_meals = -1;

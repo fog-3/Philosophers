@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 12:52:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/24 14:35:15 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/25 14:19:25 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_philosopher {
 
 /** Time functions **/
 long int	get_time(void);
-void		wait(long time_to_sleep);
+void		wait(long time_to_sleep, t_philosopher *philo);
 long int	get_diff_time(long int init_time);
 long 		intget_time(void);
 
@@ -60,6 +60,8 @@ int		ft_strlen(const char *str);
 /** Error functions **/
 void	err_msg_args();
 void	ft_free(t_data *data, t_philosopher **phil, char *msg);
+int		eval_params(t_data *data);
+int		cmp_atoi(char *str);
 
 /*** Philosophers functions ***/
 void	*philosopher_routine(void *arg);

@@ -26,7 +26,7 @@ int	eval_status(t_philosopher *philo)
 		if (philo->data->num_philo_eaten == philo->data->num_philosophers)
 			philo->data->stop_simulation = 1;
 	}
-	if (get_diff_time(philo->last_meal_time) >= philo->data->time_to_die)
+	if (get_diff_time(philo->last_meal_time) > philo->data->time_to_die)
 	{
 		if (!philo->data->stop_simulation)
 			print_status(philo, "died");

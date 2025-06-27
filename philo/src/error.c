@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:36:15 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/24 17:48:56 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/25 13:24:41 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg)
 
 	i = 0;
 	if (msg != NULL)
-		printf("\e[1;31mError\e[0m: %s", msg);
+		printf("\e[1;31mError\e[0m: %s\n", msg);
 	if (phil != NULL && *phil != NULL)
 	{
 		free(*phil);
@@ -60,4 +60,35 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg)
 		pthread_mutex_destroy(&data->print);
 		pthread_mutex_destroy(&data->stop_mutex);
 	}		
+}
+
+int	eval_params(t_data *data)
+{
+	int	res;
+
+	res = 0;
+	if (data->time_to_sleep < 0 || data->time_to_die < 0 ||
+		data->time_to_eat < 0 || data->num_philosophers <= 0)
+	{
+		res = -1;
+	}
+	return (res);
+}
+
+int	cmp_atoi(char *str)
+{
+	int res;
+	int	i;
+
+	res = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			res = -1;
+		i++;
+	}
+	if (!res)
+		res = ft_atoi(str);
+	return (res);
 }

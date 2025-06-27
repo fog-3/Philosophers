@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 21:47:53 by fernando          #+#    #+#             */
-/*   Updated: 2025/05/11 09:33:01 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:15:54 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,17 @@
 // };
 
 /* It's a sleep function with a better control of the milliseconds */
-void	wait(long time_to_sleep)
+void	wait(long time_to_sleep, t_philosopher *philo)
 {
 	long	wake_up_time;
 
 	wake_up_time = get_time() + time_to_sleep;
 	while (get_time() < wake_up_time)
+	{
 		usleep(100);
+		if (eval_status(philo))
+			break;
+	}
 }
 
 /* It gives the miliseconds pased since 1970 */
