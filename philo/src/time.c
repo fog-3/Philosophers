@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 21:47:53 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/27 12:08:38 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/29 09:01:42 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	wait(long time_to_sleep, t_philosopher *philo)
 	{
 		usleep(100);
 		if (eval_status(philo))
-			break;
+			break ;
 	}
 }
 
@@ -56,7 +56,7 @@ long int	get_time(void)
 long int	get_diff_time(long int init_time)
 {
 	long int	curr_time;
-	
+
 	curr_time = get_time();
 	if (curr_time == 0)
 		return (0);

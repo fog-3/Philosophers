@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:29:33 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/25 13:27:47 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/29 08:57:52 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	init_struct(char **argv, t_data *data)
 {
 	int	n;
 	int	i;
-	
+
 	i = 0;
 	n = cmp_atoi(argv[1]);
 	data->num_philosophers = n;
@@ -64,7 +64,7 @@ void	init_philos(t_data *global_data)
 	start_philos(philos, n);
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_data			global_data;
 

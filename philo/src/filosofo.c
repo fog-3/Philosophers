@@ -6,13 +6,13 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 13:33:56 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/27 12:42:33 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/29 09:01:03 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void    think(t_philosopher *philo)
+void	think(t_philosopher *philo)
 {
 	if (eval_status(philo))
 		return ;
@@ -33,7 +33,7 @@ void	eat(t_philosopher *philo)
 	pthread_mutex_unlock(&philo->data->forks[philo->right_fork]);
 }
 
-void    sleep_philo(t_philosopher *philo)
+void	sleep_philo(t_philosopher *philo)
 {
 	if (eval_status(philo))
 		return ;
@@ -43,26 +43,27 @@ void    sleep_philo(t_philosopher *philo)
 
 void	*philosopher_routine(void *arg)
 {
-	t_philosopher   *philo;
-	
-	philo = (t_philosopher  *) arg;
+	t_philosopher	*philo;
+
+	philo = (t_philosopher *) arg;
 	while (!eval_status(philo))
 	{
 		eat(philo);
 		sleep_philo(philo);
 		think(philo);
 	}
-	return NULL;
+	return (NULL);
 }
 
-int    start_philos(t_philosopher *philos, int n)
+int	start_philos(t_philosopher *philos, int n)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(i < n)
+	while (i < n)
 	{
-		if (pthread_create(&philos[i].thread, NULL, philosopher_routine, &philos[i]) != 0)
+		if (pthread_create(&philos[i].thread, NULL, philosopher_routine,
+				&philos[i]) != 0)
 		{
 			write(2, "Error creando el hilo", 21);
 			return (0);

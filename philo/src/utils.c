@@ -6,7 +6,7 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 10:04:00 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/23 21:48:36 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/29 08:57:18 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_strlen(const char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 		i++;
 	return (i);
 }
@@ -27,7 +27,7 @@ int	ft_atoi(const char *str)
 	int	neg;
 	int	res;
 	int	i;
-	
+
 	i = 0;
 	neg = 1;
 	res = 0;

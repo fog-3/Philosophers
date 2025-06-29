@@ -66,6 +66,25 @@ In a table it would look like that:
 
 *You can see this tipes of tables giving the result of the ejecutation on this [web](https://nafuka11.github.io/philosophers-visualizer/).*
 
+To make sure that everyone eats a certain number of times you can use the following script of example:
+
+```bash
+# They must have eaten at least 7 times
+./philo 5 800 200 200 7 | awk '
+  /1 is eating/ { count1++ }
+  /2 is eating/ { count2++ }
+  /3 is eating/ { count3++ }
+  /4 is eating/ { count4++ }
+  /5 is eating/ { count5++ }
+  END {
+    print "Philosopher 1 ate: " count1 " times"
+    print "Philosopher 2 ate: " count2 " times"
+    print "Philosopher 3 ate: " count3 " times"
+    print "Philosopher 4 ate: " count4 " times"
+    print "Philosopher 5 ate: " count5 " times"
+  }'
+```
+
 ---
 
 ## Theory: Dining Philosophers Problem
@@ -92,9 +111,6 @@ Recommended tests:
 
 # Death simulation
 ./philo 3 310 200 100
-
-# Sanitize check
-make re SANITIZE=1
 ```
 
 ---

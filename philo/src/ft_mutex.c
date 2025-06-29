@@ -6,29 +6,29 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 11:58:38 by fosuna-g          #+#    #+#             */
-/*   Updated: 2025/06/27 12:45:08 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/29 08:55:10 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/philosophers.h"
-
 
 // Function used to print the status of every philosopher
 void	print_status(t_philosopher *philo, const char *status)
 {
 	pthread_mutex_lock(&philo->data->print);
-	printf("%ld %i %s\n", get_diff_time(philo->data->start_time), philo->id, status);
+	printf("%ld %i %s\n", get_diff_time(philo->data->start_time),
+		philo->id, status);
 	pthread_mutex_unlock(&philo->data->print);
 }
 
 int	eval_status(t_philosopher *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	pthread_mutex_lock(&philo->data->stop_mutex);
-	if (philo->data->max_meals > 0 && philo->meal_count >= philo->data->max_meals)
+	if (philo->data->max_meals > 0
+		&& philo->meal_count >= philo->data->max_meals)
 	{
 		if (!philo->have_eaten)
 		{

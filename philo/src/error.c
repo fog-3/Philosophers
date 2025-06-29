@@ -6,14 +6,14 @@
 /*   By: fosuna-g <fosuna-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/24 20:36:15 by fernando          #+#    #+#             */
-/*   Updated: 2025/06/25 13:24:41 by fosuna-g         ###   ########.fr       */
+/*   Updated: 2025/06/29 09:03:25 by fosuna-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
 /* Function that print some error mensages when the arguments are wrong */
-void err_msg_args()
+void	err_msg_args(void)
 {
 	write(2, "\n*================ \e[1;31mERROR\e[0m: Incorrect Arguments", 56);
 	write(2, " =================*\n\n You must to pass to the program:\n", 55);
@@ -38,7 +38,7 @@ void err_msg_args()
 
 void	ft_free(t_data *data, t_philosopher **phil, char *msg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (msg != NULL)
@@ -46,7 +46,7 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg)
 	if (phil != NULL && *phil != NULL)
 	{
 		free(*phil);
-        *phil = NULL;
+		*phil = NULL;
 	}
 	if (data != NULL)
 	{
@@ -59,7 +59,7 @@ void	ft_free(t_data *data, t_philosopher **phil, char *msg)
 		}
 		pthread_mutex_destroy(&data->print);
 		pthread_mutex_destroy(&data->stop_mutex);
-	}		
+	}
 }
 
 int	eval_params(t_data *data)
@@ -67,8 +67,8 @@ int	eval_params(t_data *data)
 	int	res;
 
 	res = 0;
-	if (data->time_to_sleep < 0 || data->time_to_die < 0 ||
-		data->time_to_eat < 0 || data->num_philosophers <= 0)
+	if (data->time_to_sleep < 0 || data->time_to_die < 0
+		|| data->time_to_eat < 0 || data->num_philosophers <= 0)
 	{
 		res = -1;
 	}
@@ -77,7 +77,7 @@ int	eval_params(t_data *data)
 
 int	cmp_atoi(char *str)
 {
-	int res;
+	int	res;
 	int	i;
 
 	res = 0;
